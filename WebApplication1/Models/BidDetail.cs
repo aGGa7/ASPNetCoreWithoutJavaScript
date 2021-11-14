@@ -9,7 +9,7 @@ namespace WebApplication1.Models
 {
     public class BidDetail
     {
-        [BindNever]
+       
         public int Id { get; set; }
         [Required(ErrorMessage = "Введите имя организации")]
         public string NameOrganization { get; set; }
@@ -19,9 +19,9 @@ namespace WebApplication1.Models
         public string PostUser { get; set; }
         [Required(ErrorMessage = "Введите адресс электронной почты")]
         public string Email { get; set; }
-        [BindNever]
+       
         public int BidId { get; set; }
-        [BindNever]   
+        
         public Bid Bid { get; set; }
     }
 }

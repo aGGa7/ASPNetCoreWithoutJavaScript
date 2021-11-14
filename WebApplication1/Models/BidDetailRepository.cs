@@ -32,7 +32,20 @@ namespace WebApplication1.Models
         {
             try
             {
-                context.Details.Add(detail);
+                
+                if (context.Details.Any(det => det.Id == detail.Id))
+                {
+                    var item = context.Details.FirstOrDefault(det => det.Id == detail.Id);
+                    item.Email = detail.Email;
+                    item.FullNameUser = detail.FullNameUser;
+                    item.NameOrganization = detail.NameOrganization;
+                    item.PostUser = detail.PostUser;
+                }
+                else
+                {
+                    context.Details.Add(detail);
+                }
+                
                 context.SaveChanges();
             }
             catch

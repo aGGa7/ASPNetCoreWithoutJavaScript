@@ -20,7 +20,8 @@ namespace WebApplication1.Controllers
             return View(repository.GetDetailByBid(id));
         }
 
-        private void SaveResult (BidDetail bidDetail)
+        [HttpPost]
+        public void DetailInfo(BidDetail bidDetail)
         {
             repository.SaveDetail(bidDetail);
         }

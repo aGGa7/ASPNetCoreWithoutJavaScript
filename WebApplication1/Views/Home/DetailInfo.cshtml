@@ -1,28 +1,38 @@
 ﻿
 @model BidDetail
 
-<form asp-action=""
-<div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Номер заявки</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext" id="staticEmail" value=@Model?.BidId>
+<form asp-controller="Home" asp-action="DetailInfo" method="post">
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Номер заявки</label>
+        <div class="col-sm-10">
+            <input asp-for="BidId" readonly type="text" class="form-control" value=@Model?.BidId>
+        </div>
     </div>
-</div>
-<div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">ФИЮ пользователя</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext" id="staticEmail" value=@Model?.FullNameUser>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">ФИЮ пользователя</label>
+        <div class="col-sm-10">
+            <input asp-for="FullNameUser" type="text" class="form-control" value=@Model?.FullNameUser>
+        </div>
     </div>
-</div>
-<div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext" id="staticEmail" value=@Model?.Email>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input asp-for="Email" type="text" class="form-control" value=@Model?.Email>
+        </div>
     </div>
-</div>
-<div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Имя организация</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control-plaintext" id="staticEmail" value=@Model?.NameOrganization>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Имя организация</label>
+        <div class="col-sm-10">
+            <input asp-for="NameOrganization" type="text" class="form-control" value=@Model?.NameOrganization>
+        </div>
     </div>
-</div>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Занимаемая должность</label>
+        <div class="col-sm-10">
+            <input asp-for="PostUser" type="text" class="form-control" value=@Model?.PostUser>
+        </div>
+    </div>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Сохранить" />
+    </div>
+</form>
