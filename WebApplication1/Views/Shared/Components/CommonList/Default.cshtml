@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Bid>
+<div class="list-group">
+    @foreach (var bid in Model)
+    {
+        <a class="list-group-item list-group-item-action" asp-controller="Home" asp-action="DetailInfo" asp-route-id="@bid.Id">@bid.Id</a>
+    }
+</div>
