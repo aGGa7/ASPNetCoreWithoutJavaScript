@@ -9,22 +9,24 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        private IBidDetails repository;
-        public HomeController(IBidDetails repo)
+        private IBidDetails bidDetailRepositore;
+        private IBidRepositore bidRepositore;
+        public HomeController(IBidDetails det, IBidRepositore bids)
         {
-            repository = repo;
+            bidDetailRepositore = det;
+            bidRepositore = bids;
         }
 
         public ViewResult DetailInfo(int id)
         {
             ViewData["SelectBidId"] = id;
-            return View(repository.GetDetailByBid(id));
+            return View(bidDetailRepositore.GetDetailByBid(id));
         }
 
         [HttpPost]
         public RedirectToActionResult DetailInfo(BidDetail bidDetail)
         {
-            repository.SaveDetail(bidDetail);
+            bidDetailRepositore.SaveDetail(bidDetail);
             return RedirectToAction( "DetailInfo", new {id = ViewData["SelectBidId"]});
         }
 
