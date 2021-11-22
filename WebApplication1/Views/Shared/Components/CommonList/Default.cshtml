@@ -1,7 +1,13 @@
 ﻿@model IEnumerable<Bid>
+    <nav class="navbar navbar-light bg-light">
+        <form class="container-fluid justify-content-start">
+            <button class="btn btn-outline-success me-2" type="button">Add new bid</button>
+            <button class="btn btn-sm btn-outline-secondary" type="button">Delete select bid</button>
+        </form>
+    </nav>
 <div class="list-group">
     @foreach (var bid in Model)
     {
-        <a class="list-group-item list-group-item-action" asp-controller="Home" asp-action="DetailInfo" asp-route-id="@bid.Id">@bid.Id</a>
+        <a class="list-group-item list-group-item-action @(bid.Id == (int)ViewData["SelectBidId"] ? "active" : "")" asp-controller="Home" asp-action="DetailInfo" asp-route-id="@bid.Id" >@bid.Id</a>
     }
 </div>

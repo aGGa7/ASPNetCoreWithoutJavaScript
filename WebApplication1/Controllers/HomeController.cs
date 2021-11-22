@@ -17,13 +17,15 @@ namespace WebApplication1.Controllers
 
         public ViewResult DetailInfo(int id)
         {
+            ViewData["SelectBidId"] = id;
             return View(repository.GetDetailByBid(id));
         }
 
         [HttpPost]
-        public void DetailInfo(BidDetail bidDetail)
+        public RedirectToActionResult DetailInfo(BidDetail bidDetail)
         {
             repository.SaveDetail(bidDetail);
+            return RedirectToAction( "DetailInfo", new {id = ViewData["SelectBidId"]});
         }
 
     }
