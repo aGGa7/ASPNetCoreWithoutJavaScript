@@ -1,0 +1,10 @@
+﻿
+@model BidsDataViewModel
+
+<div id="commonlist" class="col-3">
+    @await Html.PartialAsync("_ListBids", Model.ListBids)
+</div>
+<div class="col-9">
+    @await Html.PartialAsync("_BidDetail", Model.Detail)
+</div>
+

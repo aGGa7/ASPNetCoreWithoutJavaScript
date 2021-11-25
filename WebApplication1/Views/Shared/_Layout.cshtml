@@ -12,12 +12,13 @@
         <a class="navbar-brand" href="#">Тестовая задача</a>
     </div>
     <div class="row m-1 p-1">
-        <div id="commonlist" class="col-3">
-           @await Component.InvokeAsync("CommonList")
+        @RenderBody()
+        @*<div id="commonlist" class="col-3">
+            @await Component.InvokeAsync("CommonList")
         </div>
         <div class="col-9">
             @RenderBody()
-        </div>
+        </div>*@
     </div>
     
 </body>

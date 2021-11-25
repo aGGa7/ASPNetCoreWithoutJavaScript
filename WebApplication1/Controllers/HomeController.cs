@@ -17,10 +17,15 @@ namespace WebApplication1.Controllers
             bidRepositore = bids;
         }
 
+        public ViewResult Home ()
+        {
+            return View(new BidsDataViewModel { ListBids = bidRepositore.Bids, Detail = null }) ;
+        }
+
         public ViewResult DetailInfo(int id)
         {
             ViewData["SelectBidId"] = id;
-            return View(bidDetailRepositore.GetDetailByBid(id));
+            return View("Home",new BidsDataViewModel { ListBids = bidRepositore.Bids, Detail = bidDetailRepositore.GetDetailByBid(id) });
         }
 
         [HttpPost]

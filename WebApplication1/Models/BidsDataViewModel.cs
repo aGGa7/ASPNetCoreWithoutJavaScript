@@ -7,8 +7,8 @@ namespace WebApplication1.Models
 {
     public class BidsDataViewModel
     {
-        public IEnumerable<Bid> Bids { get; set; }
-        BidDetail Detail { get; set; }
+        public IEnumerable<Bid> ListBids { get; set; }
+        public BidDetail Detail { get; set; }
 
     }
 }
