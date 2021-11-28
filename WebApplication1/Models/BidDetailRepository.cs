@@ -19,7 +19,7 @@ namespace WebApplication1.Models
         {
             try
             {
-                return Details.FirstOrDefault(d => d.Bid.Id == id);
+                return Details.FirstOrDefault(d => d.BidId == id);
             }
             catch
             {
@@ -33,9 +33,9 @@ namespace WebApplication1.Models
             try
             {
                 
-                if (context.Details.Any(det => det.Id == detail.Id))
+                if (context.Details.Any(det => det.BidId == detail.BidId))
                 {
-                    var item = context.Details.FirstOrDefault(det => det.Id == detail.Id);
+                    var item = context.Details.FirstOrDefault(det => det.BidId == detail.BidId);
                     item.Email = detail.Email;
                     item.FullNameUser = detail.FullNameUser;
                     item.NameOrganization = detail.NameOrganization;

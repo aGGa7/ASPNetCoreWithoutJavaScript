@@ -14,11 +14,52 @@ namespace WebApplication1.Models
             context = ctx;
         }
 
+    
+
         public IQueryable<Bid> Bids => context.Bids;
 
-        //public IQueryable<BidDetail> Details => context.Details;
+        public void DeleteBid(Bid bid)
+        {
+            try
+            {
+                if(context.Bids.Contains(bid))
+                {
+                    context.Bids.Remove(bid);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("bid not found");
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
-        //public BidDetail GetDetailByBid(int id) => Details.FirstOrDefault(d => d.Bid.Id == id); 
-        
+        public void SaveBid(Bid newbid)
+        {
+            try
+            {
+                if (context.Bids.Any(bid => bid.Id.Equals(newbid.Id)))
+                {
+                    var bid = context.Bids.FirstOrDefault(bid => bid.Id.Equals(newbid.Id));
+                    bid.Detail = newbid.Detail;
+                    bid.DateCreate = newbid.DateCreate;
+                }
+                else
+                {
+                    context.Bids.Add(newbid);
+                }
+                context.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+           
+           
+        }
     }
 }

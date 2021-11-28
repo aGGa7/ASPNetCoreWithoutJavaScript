@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Bid>
 <nav class="navbar navbar-light bg-light">
     <form class="container-fluid justify-content-start">
-        <button class="btn btn-outline-success me-2" type="button">Add new bid</button>
-        <button class="btn btn-sm btn-outline-secondary" type="button">Delete select bid</button>
+        <a class="btn btn-outline-success me-2" type="button" asp-controller="Home" asp-action="AddBid">Add new bid</a>
+        <a class="btn btn-sm btn-outline-secondary" type="button"  asp-action="DeleteBid" asp-route-bidId="@( (int)ViewData["SelectBidId"])">Delete select bid</a>
     </form>
 </nav>
 <div class="list-group">

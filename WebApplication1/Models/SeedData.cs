@@ -19,7 +19,7 @@ namespace WebApplication1.Models
                 for (int i = 1; i <3; i++)
                 {
                     Bid bid = new Bid { Id = i, DateCreate = new System.DateTime(1989, i, 30 - i, 12+i, 12-i, 12), };
-                    BidDetail detail = new BidDetail { BidId = i, Id = i, Email = "test1@gmail.com", FullNameUser = "Test"+i+" TestOne", NameOrganization = "UfaOrg", PostUser = "sotrudnik"+i };
+                    BidDetail detail = new BidDetail { BidId = i,  Email = "test1@gmail.com", FullNameUser = "Test"+i+" TestOne", NameOrganization = "UfaOrg", PostUser = "sotrudnik"+i };
                     bids.Add(bid);
                     details.Add(detail);
                 }

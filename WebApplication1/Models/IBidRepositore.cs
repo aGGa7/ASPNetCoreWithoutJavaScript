@@ -8,7 +8,7 @@ namespace WebApplication1.Models
     public interface IBidRepositore
     {
         IQueryable<Bid> Bids { get; }
-        //IQueryable<BidDetail> Details {get; }
-        //BidDetail GetDetailByBid(int id);
+        void SaveBid(Bid bid);
+        void DeleteBid(Bid bid);
     }
 }
