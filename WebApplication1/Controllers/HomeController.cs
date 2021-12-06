@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApplication1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
@@ -27,14 +26,14 @@ namespace WebApplication1.Controllers
             ViewData["SelectBidId"] = id;
             return View("Home",new BidsDataViewModel { ListBids = bidRepositore.Bids, Detail = bidDetailRepositore.GetDetailByBid(id) });
         }
-
+        [Authorize]
         [HttpPost]
         public RedirectToActionResult DetailInfo(BidDetail bidDetail)
         {
             bidDetailRepositore.SaveDetail(bidDetail);
             return RedirectToAction( "DetailInfo", new { id = bidDetail.BidId });
         }
-
+        [Authorize]
         public RedirectToActionResult AddBid()
         {
             Bid newBid = new Bid{DateCreate = DateTime.UtcNow, Detail = null };
@@ -44,7 +43,7 @@ namespace WebApplication1.Controllers
             //перенести осхранение в ручной режим
             return RedirectToAction("DetailInfo", new { id = newBid.Id });
         }
-
+        [Authorize]
         public RedirectToActionResult DeleteBid(int bidId)
         {
             Bid bidDelete = bidRepositore.Bids.FirstOrDefault(bid => bid.Id.Equals(bidId));

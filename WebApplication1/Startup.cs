@@ -5,11 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApplication1.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1
 {
@@ -23,6 +20,8 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDBContext>(options => options.UseNpgsql(Configuration["Data:ConnectionString:DefaultConnection"]));
+            services.AddDbContext<AppIdentityDBContext>(options => options.UseNpgsql(Configuration["Data:AppIdentity:DefaultConnection"]));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDBContext>().AddDefaultTokenProviders();
             services.AddTransient<IBidRepositore, BidsRepository>();
             services.AddTransient<IBidDetails, BidDetailRepository>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
@@ -37,13 +36,14 @@ namespace WebApplication1
             }
             app.UseStatusCodePages();
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=DetailInfo}/{id?}");
             });
             SeedData.EnsurePopulated(app);
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
