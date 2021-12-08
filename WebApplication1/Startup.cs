@@ -40,7 +40,7 @@ namespace WebApplication1
             app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=DetailInfo}/{id?}");
+                    template: "{controller=Account}/{action=Login}");
             });
             SeedData.EnsurePopulated(app);
             IdentitySeedData.EnsurePopulated(app);
